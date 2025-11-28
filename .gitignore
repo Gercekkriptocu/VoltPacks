@@ -1,0 +1,11 @@
+/.next
+/node_modules
+
+.DS_Store
+next.log
+.vercel
+
+output.log
+error.log
+
+core
