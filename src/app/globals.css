@@ -1,0 +1,729 @@
+@import url('https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+:root {
+  --stranger-red: #E71D36;
+  --upside-dark: #09090b;
+}
+
+/* Custom z-index utilities */
+.z-25 {
+  z-index: 25;
+}
+
+body {
+  background-color: var(--upside-dark);
+  color: white;
+  font-family: 'Nosifer', 'Creepster', serif;
+}
+
+/* Neon Glow Efekti */
+.stranger-glow {
+  text-shadow: 
+    0 0 5px var(--stranger-red),
+    0 0 10px var(--stranger-red),
+    0 0 20px var(--stranger-red),
+    0 0 40px var(--stranger-red);
+  animation: pulse-glow 2s ease-in-out infinite;
+  /* Black text stroke for better contrast */
+  -webkit-text-stroke: 2px #000000;
+  text-stroke: 2px #000000;
+  paint-order: stroke fill;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    text-shadow: 
+      0 0 5px var(--stranger-red),
+      0 0 10px var(--stranger-red),
+      0 0 20px var(--stranger-red),
+      0 0 40px var(--stranger-red);
+  }
+  50% {
+    text-shadow: 
+      0 0 2px var(--stranger-red),
+      0 0 5px var(--stranger-red),
+      0 0 10px var(--stranger-red),
+      0 0 20px var(--stranger-red);
+  }
+}
+
+/* --- CRT & VHS EFFECT LAYERS --- */
+.crt-overlay {
+  background: 
+    linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+    linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  background-size: 100% 2px, 3px 100%;
+}
+
+.scanlines {
+  background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.2));
+  background-size: 100% 4px;
+  animation: scrollScanlines 10s linear infinite;
+}
+
+@keyframes scrollScanlines {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 100%; }
+}
+
+/* --- LIGHTNING & ATMOSPHERE --- */
+@keyframes lightningFlash {
+  0%, 90%, 100% { opacity: 0; }
+  92% { opacity: 0.8; filter: brightness(2); }
+  93% { opacity: 0.2; }
+  94% { opacity: 0.6; }
+  96% { opacity: 0.1; }
+}
+
+.animate-lightning {
+  animation: lightningFlash 3s infinite;
+}
+
+/* --- SPORES (Organik Parçacıklar) --- */
+.spore-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(200, 200, 200, 0.4);
+  border-radius: 50%;
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
+  bottom: -10px;
+  animation: floatUp linear infinite;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0) translateX(0); opacity: 0; }
+  20% { opacity: 0.8; }
+  100% { transform: translateY(-100vh) translateX(50px); opacity: 0; }
+}
+
+/* --- PACK SHAKE (Daha kaotik) --- */
+@keyframes violentShake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+/* --- VEINS ANIMATION (SVG) --- */
+.vein-path {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: growVeins 3.5s ease-in forwards;
+}
+
+@keyframes growVeins {
+  0% { stroke-dashoffset: 100; opacity: 0.3; }
+  100% { stroke-dashoffset: 0; opacity: 1; }
+}
+
+/* --- EXPLOSION & REVEAL --- */
+@keyframes superShockwave {
+  0% { transform: scale(0); opacity: 1; border-width: 100px; border-color: white; }
+  50% { border-color: red; }
+  100% { transform: scale(1); opacity: 0; border-width: 0; }
+}
+
+.animate-shockwave {
+  animation: superShockwave 0.6s cubic-bezier(0, 0.5, 0.5, 1) forwards;
+}
+
+.animate-flash {
+  animation: flashWhite 0.2s ease-out forwards;
+}
+
+@keyframes flashWhite {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* --- CARD REVEAL (Süzülme) --- */
+.animate-float-card {
+  animation: floatCardIn 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes floatCardIn {
+  0% { opacity: 0; transform: scale(0.5) translateY(50px) rotateX(20deg); filter: blur(10px); }
+  100% { opacity: 1; transform: scale(1) translateY(0) rotateX(0deg); filter: blur(0); }
+}
+
+.animate-slide-up {
+  opacity: 0;
+  animation: slideUpText 1s ease-out 0.5s forwards;
+}
+
+@keyframes slideUpText {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* --- PULSE SLOW --- */
+@keyframes animate-pulse-slow {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+.animate-pulse-slow {
+  animation: animate-pulse-slow 4s ease-in-out infinite;
+}
+
+/* --- TILT ANIMATION --- */
+@keyframes animate-tilt {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(1deg); }
+  75% { transform: rotate(-1deg); }
+}
+
+.animate-tilt {
+  animation: animate-tilt 3s ease-in-out infinite;
+}
+
+.box-shake {
+  animation: shake 0.5s infinite;
+}
+
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+.card-reveal {
+  animation: popIn 1s ease-out forwards;
+}
+
+@keyframes popIn {
+  0% { transform: scale(0) rotate(-180deg); opacity: 0; }
+  60% { transform: scale(1.1) rotate(10deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+.portal-bg {
+  background: radial-gradient(circle at center, #1a0000 0%, #09090b 70%);
+}
+
+.flickering-light {
+  animation: flicker 3s infinite;
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  41.99% { opacity: 1; }
+  42% { opacity: 0.8; }
+  43% { opacity: 1; }
+  45.99% { opacity: 1; }
+  46% { opacity: 0.6; }
+  46.5% { opacity: 1; }
+}
+
+/* --- 3D SAHNE AYARLARI --- */
+.perspective-container {
+  perspective: 1500px;
+  transform-style: preserve-3d;
+}
+
+.perspective-card {
+  perspective: 1500px;
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+/* --- 3D KART PAKETİ (KÜP) - Enhanced --- */
+.pack-cube {
+  width: 250px;
+  height: 350px;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateY(-30deg) rotateX(10deg);
+  transition: transform 0.5s;
+  filter: drop-shadow(0 0 30px rgba(255, 0, 0, 0.5));
+}
+
+.pack-cube-v2 {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-style: preserve-3d;
+}
+
+.pack-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pack-face {
+  position: absolute;
+  width: 250px;
+  height: 350px;
+  background: linear-gradient(135deg, #2a0505 0%, #8b0000 50%, #2a0505 100%);
+  border: 3px solid #ff0000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 
+    inset 0 0 30px rgba(255, 0, 0, 0.3),
+    0 0 40px rgba(255, 0, 0, 0.4);
+  backface-visibility: hidden;
+}
+
+.pack-face-front  { transform: translateZ(20px); }
+.pack-face-back   { transform: rotateY(180deg) translateZ(20px); }
+.pack-face-right  { width: 40px; left: 100px; transform: rotateY(90deg) translateZ(120px); opacity: 0; }
+.pack-face-left   { width: 40px; left: 100px; transform: rotateY(-90deg) translateZ(120px); opacity: 0; }
+.pack-face-top    { height: 40px; top: 150px; transform: rotateX(90deg) translateZ(170px); opacity: 0; }
+.pack-face-bottom { height: 40px; top: 150px; transform: rotateX(-90deg) translateZ(170px); opacity: 0; }
+
+/* Paket Sallanma Efekti (Tension) - Enhanced */
+.pack-shake {
+  animation: violentShake 3s ease-in forwards;
+}
+
+/* --- PATLAMA --- */
+.flare-explosion {
+  position: absolute;
+  inset: -100%;
+  background: radial-gradient(circle, #fff 0%, #ff0000 20%, transparent 60%);
+  animation: superFlare 0.8s cubic-bezier(0,0.9,0.5,1) forwards;
+  z-index: 60;
+  pointer-events: none;
+}
+@keyframes superFlare {
+  0% { transform: scale(0); opacity: 1; }
+  100% { transform: scale(1); opacity: 0; }
+}
+
+/* --- ENERJİ PARÇACIKLARI --- */
+.energy-particle {
+  position: absolute;
+  top: 50%; left: 50%;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 0 10px #ff0000;
+  animation: shootOut 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes shootOut {
+  0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  100% { transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(0); opacity: 0; }
+}
+
+/* --- 3D CONFETTI ANIMATION --- */
+.confetti-piece {
+  position: absolute;
+  border-radius: 2px;
+  animation: confetti3D linear infinite;
+  pointer-events: none;
+  z-index: 100;
+}
+
+@keyframes confetti3D {
+  0% {
+    transform: translate3d(0, 0, 0) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: 
+      translate3d(
+        calc(var(--random-x, 0) * 200px), 
+        calc(var(--random-y, 1) * 600px), 
+        calc(var(--random-z, 0) * 300px)
+      ) 
+      rotateX(720deg) 
+      rotateY(1080deg) 
+      rotateZ(360deg);
+    opacity: 0;
+  }
+}
+
+/* --- STATIC CARD REVEAL (No rotation) --- */
+.card-static-reveal {
+  width: 320px;
+  height: 450px;
+  animation: staticReveal 2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  transform-origin: center center;
+}
+
+@keyframes staticReveal {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+    filter: brightness(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+    filter: brightness(1.5);
+  }
+  100% {
+    transform: scale(1);
+    filter: brightness(1);
+    box-shadow: 0 0 60px rgba(255,0,0,0.9);
+  }
+}
+
+/* --- UPSIDE DOWN SPORES (KÜLLER) - Enhanced --- */
+.ash-particle {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: floatAsh linear infinite;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+@keyframes floatAsh {
+  0% { 
+    transform: translateY(100vh) translateX(0) rotate(0deg); 
+    opacity: 0; 
+  }
+  10% { opacity: 0.8; }
+  50% { opacity: 1; }
+  90% { opacity: 0.8; }
+  100% { 
+    transform: translateY(-10vh) translateX(30px) rotate(360deg); 
+    opacity: 0; 
+  }
+}
+
+/* --- KAMERA SARSINTISI --- */
+.screen-shake {
+  animation: shakeScreen 0.5s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes shakeScreen {
+  10%, 90% { transform: translate3d(-4px, 0, 0); }
+  20%, 80% { transform: translate3d(6px, 0, 0); }
+  30%, 50%, 70% { transform: translate3d(-8px, 0, 0); }
+  40%, 60% { transform: translate3d(8px, 0, 0); }
+}
+
+/* --- Shockwave Effect --- */
+.shockwave {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  border: 20px solid rgba(255,255,255,0.8);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: shockwaveGo 0.8s ease-out forwards;
+  z-index: 55;
+}
+
+@keyframes shockwaveGo {
+  0% { width: 0; height: 0; opacity: 1; border-width: 50px; }
+  100% { width: 150vw; height: 150vw; opacity: 0; border-width: 0px; }
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+/* --- YANSIMA (Shimmer) --- */
+@keyframes animate-shimmer {
+  0% { transform: translateX(-100%) rotate(45deg); }
+  100% { transform: translateX(200%) rotate(45deg); }
+}
+
+.animate-shimmer {
+  animation: animate-shimmer 3s ease-in-out infinite;
+}
+
+@keyframes animate-bounce-up {
+  0% { transform: translateY(20px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.animate-bounce-up {
+  animation: animate-bounce-up 0.8s ease-out forwards;
+}
+
+/* --- AUTO-SCROLLING SLIDER ANIMATION --- */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll-left {
+  animation: scroll-left 60s linear infinite;
+}
+
+.animate-scroll-left:hover {
+  animation-play-state: paused;
+}
+
+/* --- CRT GRAIN & SCANLINE ANIMATIONS --- */
+@keyframes animate-grain {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -5%); }
+  20% { transform: translate(-10%, 5%); }
+  30% { transform: translate(5%, -10%); }
+  40% { transform: translate(-5%, 15%); }
+  50% { transform: translate(-10%, 5%); }
+  60% { transform: translate(15%, 0); }
+  70% { transform: translate(0, 10%); }
+  80% { transform: translate(-15%, 0); }
+  90% { transform: translate(10%, 5%); }
+}
+
+.animate-grain {
+  animation: animate-grain 8s steps(10) infinite;
+}
+
+@keyframes animate-scanline {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 100%; }
+}
+
+.animate-scanline {
+  animation: animate-scanline 8s linear infinite;
+}
+
+/* --- FLICKER ANIMATION --- */
+@keyframes animate-flicker {
+  0%, 100% { opacity: 1; }
+  41.99% { opacity: 1; }
+  42% { opacity: 0.8; }
+  43% { opacity: 1; }
+  45.99% { opacity: 1; }
+  46% { opacity: 0.4; }
+  46.5% { opacity: 1; }
+  49% { opacity: 1; }
+  49.5% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+.animate-flicker {
+  animation: animate-flicker 3s linear infinite;
+}
+
+/* --- MYSTERY PACK CARD ANIMATION --- */
+.mystery-pack-card {
+  animation: float-mystery 3s ease-in-out infinite;
+}
+
+@keyframes float-mystery {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* --- NEW HAWKINS LAB ANIMATIONS --- */
+
+/* Floating Particles around Pack */
+@keyframes float-particle {
+  0%, 100% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 0.3;
+  }
+  25% {
+    transform: translateY(-20px) translateX(10px) scale(1.2);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(-10px) translateX(-15px) scale(0.8);
+    opacity: 0.6;
+  }
+  75% {
+    transform: translateY(-30px) translateX(5px) scale(1.1);
+    opacity: 0.9;
+  }
+}
+
+.animate-float-particle {
+  animation: float-particle 3s ease-in-out infinite;
+}
+
+/* Card Glow Effect */
+@keyframes card-glow {
+  0%, 100% {
+    box-shadow: 0 0 60px rgba(139,0,0,0.3);
+  }
+  50% {
+    box-shadow: 0 0 80px rgba(255,0,0,0.6), 0 0 100px rgba(255,0,0,0.4);
+  }
+}
+
+.animate-card-glow {
+  animation: card-glow 2s ease-in-out infinite;
+}
+
+/* Text Glow Effect */
+@keyframes text-glow {
+  0%, 100% {
+    text-shadow: 0 2px 10px rgba(0,0,0,1);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(255,0,0,0.8), 0 0 30px rgba(255,0,0,0.6);
+  }
+}
+
+.animate-text-glow {
+  animation: text-glow 2s ease-in-out infinite;
+}
+
+/* Slow Spin Animation */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+/* Floating Card Animation */
+@keyframes float-card {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+.animate-float-card {
+  animation: float-card 3s ease-in-out infinite;
+}
+
+/* --- SIDE ATMOSPHERIC SPORES --- */
+@keyframes float-side-spore {
+  0%, 100% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 0.2;
+  }
+  25% {
+    transform: translateY(-30px) translateX(20px) scale(1.3);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-60px) translateX(-10px) scale(0.8);
+    opacity: 0.4;
+  }
+  75% {
+    transform: translateY(-40px) translateX(30px) scale(1.1);
+    opacity: 0.7;
+  }
+}
+
+.animate-float-side-spore {
+  animation: float-side-spore 8s ease-in-out infinite;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
