@@ -934,8 +934,11 @@ export default function Home() {
                       
                       // Create text without NFT details
                       const text = encodeURIComponent(
-                        `Just minted ${count} Stranger Things NFT${count > 1 ? 's' : ''} from the Upside Down! 🔴⚡\\n\\nExperience: https://www.voltpacks.xyz\\n\\n#StrangerThings #NFT #Base #Web3`
-                      );
+  `Just minted ${revealedCards.length} Stranger Things NFT${revealedCards.length > 1 ? 's' : ''} from the Upside Down! 🔴⚡\n\n` +
+  revealedCards.map(card => `Artifact #${card.number}`).join('\n') + '\n\n' +
+  `Experience: https://voltpacks.xyz\n\n` +
+  `#StrangerThings #NFT #Base #Web3`
+);
                       
                       // Add NFT images as embeds (Farcaster supports up to 4 embeds)
                       const embeds = revealedCards.slice(0, 4).map(card => 
